@@ -1083,6 +1083,8 @@ function OnStopped(fitnessID, Personid) {
     });
 
 }
+
+// Onwarn click
 function OnWarn(fitnessID, Personid) {
     var libtnWarnID = "#btnWan" + Personid;
     var person = userList.filter(x => x.FitnessTestID == fitnessID && x.PersonID == Personid); 
