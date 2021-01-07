@@ -22,6 +22,7 @@ namespace YoYo.API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
+            _logger.LogInformation($"call api url : ${this.HttpContext.Request.Path}/{this.HttpContext.Request.QueryString}");
             var fitnesses = await _mediator.Send(new GetAllFitnessCachedQuery());
             return Ok(fitnesses);
         }

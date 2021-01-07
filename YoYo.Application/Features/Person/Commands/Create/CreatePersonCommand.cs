@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using FluentValidation;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -18,9 +19,15 @@ namespace YoYo.Application.Features.Person.Commands.Create
         public DateTime CreatedAt { get; set; }
         public DateTime CreatedBy { get; set; }
 
-        
     }
 
+    public class PersonValidator : AbstractValidator<CreatePersonCommand>
+    {
+        public PersonValidator()
+        {
+            RuleFor(x => x.Name).Length(0, 2000);          
+        }
+    }
     public class CreatePersonCommandHandler : IRequestHandler<CreatePersonCommand, int>
     {
 

@@ -6,6 +6,8 @@ using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using YoYo.Application.Extensions;
+using YoYo.Application.Features.Commands;
 using YoYo.Application.Features.Person.Commands.Create;
 using YoYo.Application.Features.Person.Commands.Delete;
 using YoYo.Application.Features.Person.Commands.Update;
@@ -44,6 +46,14 @@ namespace YoYo.API.Controllers
         [HttpPost]
         public async Task<IActionResult> Post(CreatePersonCommand command)
         {
+            
+            var requestperson = new IdentifiedCommand<CreatePersonCommand,int>(command, new Guid());
+            _logger.LogInformation(
+                      "----- Sending command: {CommandName} - {IdProperty}: {CommandId} ({@Command})",
+                      requestperson.GetGenericTypeName(),
+                      nameof(requestperson.Command.Name),
+                      requestperson.Command.Name,
+                      requestperson);
             return Ok(await _mediator.Send(command));
         }
 
