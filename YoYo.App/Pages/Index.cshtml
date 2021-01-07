@@ -1,0 +1,487 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+<style>
+    body {
+        background-color: white;
+    }
+    .round-button {
+        box-sizing: border-box;
+        display: block;
+        width: 80px;
+        height: 80px;
+        padding-top: 14px;
+        padding-left: 8px;
+        line-height: 20px;
+        border: 6px solid #fff;
+        border-radius: 50%;
+        color: #f5f5f5;
+        text-align: center;
+        text-decoration: none;
+        background-color: rgba(0,0,0,0.5);
+        font-size: 20px;
+        font-weight: bold;
+        transition: all 0.3s ease;
+    }
+
+        .round-button:hover {
+            background-color: rgba(0,0,0,0.8);
+            box-shadow: 0px 0px 10px rgba(255,255,100,1);
+            text-shadow: 0px 0px 10px rgba(255,255,100,1);
+        }
+
+    div.yoyo {
+        border: 2px solid black;
+        max-width: 400px;
+        Height: 600px;
+        align-content: center;
+    }
+
+    .title {
+        padding: 120px;
+        text-align: center;
+        font-weight: bold;
+        font-size: 15px;
+    }
+
+    .dot {
+        height: 100px;
+        width: 100px;
+        background-color: white;
+        border-radius: 50%;
+        display: inline-block;
+        border: 2px solid black;
+        padding: 20px;
+        opacity: 0.3;
+    }
+
+    .list-post {
+        margin-top: 15px;
+    }
+
+        .list-post > li {
+            float: left;
+            padding: 0 15px;
+            font-size: 13px;
+            font-weight: 300;
+            line-height: 57px;
+        }
+
+            .list-post > li:first-child {
+                border-left: none;
+            }
+
+
+        .list-post > li {
+            border-left: 1px solid black;
+        }
+
+            .list-post > li > span {
+                margin-left: 4px;
+                font-size: 26px;
+                font-weight: 400;
+            }
+
+            .list-post > li > h4 {
+                margin: 10px 0 5px;
+            }
+
+    .channelCostValue li {
+        line-height: 19px;
+        opacity: 0.3;
+    }
+
+    #trackerList li {
+        height: 60px;
+    }
+
+    .tracker-status-val {
+    /*    padding-right: 30px;
+        padding-left: 154px;*/
+        float:right;
+        width:50px;
+    }
+
+    .linone {
+        list-style-type: none;
+    }
+
+    .text-center {
+        text-align: center;
+    }
+    .trackHedater {
+        padding-left: 20px;
+        font-size: 20px;
+        font-family: math;
+    }
+    .circle-play {
+        padding: 0 !important;
+        background: url('..//wwwroot/images/circle_playsvg.svg') no-repeat;
+        width: 14px;
+        height: 14px;
+        background-size: 100%;
+        margin-left: 2px;
+    }
+
+    .glyphicon-chevron-down {
+       opacity:0.3;
+    }
+    .warning-icon {
+        padding-left: 88px;
+    }
+    .btn-danger {
+        border-radius: 40px;
+    }
+
+    .btn-warning {
+        border-radius: 40px;
+    }
+    .divlist {
+        /*margin: 5px;*/
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+
+    #divlist {
+        margin: 5px;
+    }
+
+    .tracker-status-btn {
+        float: right;
+        padding-right: 20px;
+    }
+    .totl-distance {
+        font-size: 30px;
+    }
+
+    .hr-bottom {
+        margin-bottom: 20px;
+        border: 0;
+        border-top: 1px solid #eee;
+    }
+    ol#trackerList1 > li {
+        height: 45px;
+        border-bottom: 1px solid lightgrey;
+        margin: 10px 0 10px 0;
+
+    }
+/*
+    .list-post > li:first-child {
+        border-left: none;
+    }
+    .list-post > li {
+        float: left;
+        padding: 0 15px;
+        font-size: 13px;
+        font-weight: 300;
+        line-height: 57px;
+    }*/
+
+   /* .list-post > li {
+        border-left: 1px solid #e9e9eb;
+    }*/
+
+    .click-off {
+        cursor: default !important;
+        opacity: 0.3;
+        pointer-events: none;
+    }
+    .btn-primary {
+        border-radius: 18px;
+    }
+    #stopWatch {
+        width: 280px;
+        height: auto;
+        text-align: center;
+        display: block;
+        padding: 5px;
+        margin: 0 auto;
+    }
+
+    #timer, #fulltime {
+        width: auto;
+        height: auto;
+        padding: 10px;
+        font-weight: bold;
+        font-family: tahoma;
+        display: block;
+        border: 1px solid #eee;
+        text-align: center;
+        box-shadow: 0 0 5px #ccc;
+        background: #fbfbf0;
+        color: darkblue;
+        border-bottom: 4px solid darkgrey;
+    }
+
+    button {
+        cursor: pointer;
+        font-weight: 700;
+    }
+
+    #fulltime {
+        display: none;
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+/*
+    .list-inflencers > ul > li {
+        width: 25%;
+        float: left;
+        padding: 5px;
+        text-align: center;
+        font-size: 12px;
+    }
+
+        .list-inflencers > ul > li:first-child {
+            border-left: none;
+        }
+
+        .list-inflencers > ul > li h3 {
+            margin: 0;
+        }
+
+    .list-inflencers > i {
+        position: absolute;
+        right: 5px;
+        top: 10px;
+    }
+
+    .list-inflencers > .box-sm {
+        display: inline-table;
+        overflow: hidden;
+    }
+
+        .list-inflencers > .box-sm > span {
+            width: 68px;
+            height: 68px;
+            margin: 0 10px 0 5px;
+            float: left;
+            display: inline-block;
+            border-radius: 100%;
+            overflow: hidden;
+        }
+
+            .list-inflencers > .box-sm > span img {
+                width: 68px;
+            }
+
+        .list-inflencers > .box-sm > div {
+            display: table-cell;
+            vertical-align: middle;
+        }
+
+            .list-inflencers > .box-sm > div h4 {
+                margin-bottom: 4px;
+                font-weight: 200;
+                line-height: 21px;
+            }
+
+            .list-inflencers > .box-sm > div p {
+                font-size: 13px;
+            }
+
+    .list-inflencers > .bdrStyle1 {
+        border-left: none !important;
+    }
+
+        .list-inflencers > .bdrStyle1:before, .infogrid:before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 20%;
+            bottom: 20%;
+        }
+
+    .key-inflencers > div {
+        height: 84px;
+        overflow: hidden;
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+
+        .key-inflencers > div > i {
+            float: left;
+            margin: 0 20px 0 10px;
+        }
+
+        .key-inflencers > div > .text-left {
+            display: block;
+            vertical-align: middle;
+        }
+
+            .key-inflencers > div > .text-left h4 {
+                margin-bottom: 4px;
+                font-weight: 200;
+            }
+
+            .key-inflencers > div > .text-left p {
+                font-size: 13px;
+            }
+
+    .key-inflencers > .bdrStyle1 {
+        border-left: none !important;
+    }
+
+        .key-inflencers > .bdrStyle1:before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 20%;
+            bottom: 20%;
+        }
+
+    .list-mentions {
+        margin: 0 40px;
+    }
+
+        .list-mentions > li {
+            padding: 15px 0;
+            text-align: left;
+        }
+
+            .list-mentions > li:first-child {
+                border-top: none;
+            }
+
+            .list-mentions > li > h4 {
+                margin: 0;
+                font-weight: 400 !important;
+            }
+
+            .list-mentions > li > span {
+                float: right;
+                font-weight: 500;
+            }*/
+</style>
+
+<div class="row">
+   
+
+    <div class="yoyo col-12 col-sm-12 col-lg-12 col-xs-12">
+        <div class="row" style="padding:16px;">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+            <span class="title"> YOYO Test</span>
+
+        </div>
+        <div class="row" style="text-align:center;">
+            <!--<button style="width:50px; height:50px;">-->
+            @*<img src="~/images/circle_playsvg.svg" class="img-circle" alt="Start">*@
+
+            <!--</button>-->
+            <a id="aStart"  style="height:100px; height:100px;" href="javascript:;" onclick="FitnessTestStart(1, 1);"><img id="imgStart" src="~/images/play-button_opkxmt.svg" class="img-circle" alt="Start" style="height:100px; height:100px;"> </a>
+
+            <a id="aStop" href="javascript:;" onclick="FitnessTestStop(1, 1);"> <span id="spanStop" class="dot"> Level: 1 <br /> Shuttle 5 <br />14 km/h  </span> </a>
+        </div>
+
+        <div class="row" style="height: 100px;">
+            <ul class="clearfix linone list-post channelCostValue">
+                <li class="col-sm-4 col-lg-4 col-md-4 col-xs-4  text-center">               
+                        NEXT SHUTTLE     
+                    <span id="nextShuttleValue"> 0:00 s</span>
+                </li>
+                <li class="col-sm-4 col-lg-4 col-md-4 col-xs-4 text-center">
+                    TOTAL <br /> TIME
+                    <span id="totalTimeValue">0:00 m</span>
+                </li>
+                <li class="col-sm-4 col-lg-4 col-md-4 col-xs-4  text-center">
+                    <div>
+                        TOTAL DISTANCE
+                        <br />
+                        <span class="text-center totl-distance" id="totalDistanceValue">0 m</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        @*<div class="row">
+            <a href="#" class="btn btn-success btn-lg" style="width:50px; height:50px;">
+                <span class="glyphicon glyphicon-stop" style="width:50px; height:50px;">
+                </span>
+            </a>
+        </div>
+        <div class="row">
+            <a href="#" class="round-button"><i class="fa fa-play fa-2x"></i></a>
+        </div>*@
+        <div id="divlist" class="row">
+            <div class="trackHedater">Track</div>
+            <hr />
+            <div id="divTracker">
+                   <ol id="trackerList1">
+                    </ol>
+                    <!--<ol id="trackerList">
+                        <li>
+                            <div>
+                                <span>Charvik Jai </span>
+                                <span class="tracker-status-btn">
+                                    <button type="button" class="btn btn-warning" onclick="OnWarn('Charvik Jai', this);">Warn </button>
+                                    <button type="button" class="btn btn-danger"> Stop </button>
+                                </span>-->
+
+                                @*<span class="glyphicon glyphicon-warning-sign warning-icon hide"> </span>
+                        <span class="glyphicon glyphicon-warning-sign warning-icon"> </span>*@
+
+                                @*<span class="glyphicon glyphicon-chevron-down"></span>*@
+
+                            <!--</div>
+
+                        </li>
+
+                        <li>
+                            <div>
+                                <span>Jai </span>
+                                <span class="tracker-status-btn">
+                                    <button type="button" class="btn btn-warning">Warn </button>
+                                    <button type="button" class="btn btn-danger"> Stop </button>
+                                </span>-->
+
+                                @*<span class="glyphicon glyphicon-warning-sign warning-icon hide"> </span>
+                        <span class="glyphicon glyphicon-warning-sign warning-icon"> </span>*@
+
+                                @*<span class="glyphicon glyphicon-chevron-down"></span>*@
+
+                            <!--</div>
+
+                        </li>
+
+                        <li>
+                            <div>
+                                <span>Shankari Jai </span>
+                                <span class="tracker-status-val">
+                                    <span>
+                                        11-3
+                                    </span>
+                                    <span class="glyphicon glyphicon-chevron-down"></span>
+                                </span>
+                            </div>
+
+                        </li>
+
+                        <li>
+                            <div>
+                                <span>Seenu </span>
+                                <div class="tracker-status-val">
+                                    <span>
+                                        9-10
+                                    </span>
+                                    <span class="glyphicon glyphicon-chevron-down"></span>
+                                </div>
+                            </div>
+
+                        </li>
+                    </ol>-->
+            </div>
+            <hr class="hr-bottom" />
+        </div>
+    </div>
+
+
+
+
+    </div>
+<script>
+    $(document).ready(function () {
+        loadAll();
+    });
+</script>
